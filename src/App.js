@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import openSocket from 'socket.io-client';
+import { BrowserRouter as Router,  Route, Link, Switch } from "react-router-dom";
+import {hashHistory} from "react-router";
 import Home from "./Home";
+import Profile from "./Profile";
+import StartPage from "./StartPage";
 import Navbar from './Navbar';
 import Socket from './Socket';
 import './app.css'
@@ -15,9 +19,6 @@ class App extends Component {
 
   componentDidMount(){
     this.getRequest();
-  //  var inputComponent = document.getElementById("test");
-    //inputComponent.addEventListener("change", ()=>{)});
-
   }
 
   getRequest(){
@@ -46,9 +47,12 @@ class App extends Component {
     		alert(err);
     });
   }
+
+
   handleChange (e){
-      this.setState({message: e.target.value});
+      this.setState({field: e.target.value});
   }
+
 
   handleSubmit(){
     var temp = this.state.display;
@@ -56,18 +60,23 @@ class App extends Component {
       user: "poop",
       message: this.state.message
     });
-
     this.socket.on('message', (data)=>{this.setState({display: `${temp} ${data.message}`})})
   }
 
   render() {
     return (
-      <div className="container grid-container">
-        <Navbar />
-        <Home message={this.state.display} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>
-          <h1>{this.state.poop}</h1>
-          //<Socket />
-      </div>
+      <Router>
+
+         <div className="container grid-container">
+          <Navbar />
+           <h1>{this.state.poop}</h1>
+           <Switch>
+               <Route exact path="/" component={StartPage} />
+               <Route  path="/home"  render={()=> <Home  message={this.state.display} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>}/>
+               <Route path="/profile" component={Profile} />
+           </Switch>
+         </div>
+       </Router>
     );
   }
 }

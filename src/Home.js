@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from './Navbar';
 
 class Home extends React.Component {
   constructor(props) {
@@ -7,6 +8,8 @@ class Home extends React.Component {
 
   render(){
     return (
+      <div>
+
 
       <div className="input-group grid-bottom">
           <div>
@@ -16,6 +19,7 @@ class Home extends React.Component {
         <span className="input-group-btn">
         <button className="btn btn-default" type="button" onClick={this.props.submit}>Send!</button>
    </span>
+      </div>
       </div>
     );
   }

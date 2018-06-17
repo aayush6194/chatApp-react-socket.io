@@ -11,3 +11,18 @@
   margin-bottom: 5%;
 
 }
+
+Link, li, NavItem{
+  color: white;
+}
+
+Link:hover, li:hover, li:link, NavItem:hover, ul:hover, Link:link, Link:visted{
+  color: white;
+  text-decoration: none !important;
+  border: none;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
