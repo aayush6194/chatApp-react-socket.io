@@ -11,7 +11,7 @@ class Start extends React.Component {
 
       <div className="row vertical-align">
 
-            <input className="form-control" /> <button className="btn btn-primary" onClick={()=>{alert()}}>Submit</button>
+            <input className="form-control" /> <button className="btn btn-primary" onClick={()=>{window.location="http://localhost:3000/home"}}>Submit</button>
       </div>
     );
   }

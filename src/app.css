@@ -4,19 +4,35 @@
 
 }
 
+.nav-container{
+  margin-bottom: 60px;
+}
+
+.chat{
+  height: 50px;
+  padding: 5px 10px;
+  background-color: 	#0084ff;
+  width: 50%;
+  border-radius: 20px;
+  margin-bottom: 4px;
+  color: white;
+}
 .grid-bottom{
   position: absolute;
   bottom: 0;
   width: 80%;
+  height: 30px;
   margin-bottom: 5%;
-
 }
 
 Link, li, NavItem{
-  color: white;
+  color: black;
+  color:inherit;
+  text-decoration: none;
+  list-style: none;
 }
 
-Link:hover, li:hover, li:link, NavItem:hover, ul:hover, Link:link, Link:visted{
+Link:hover, li:hover, ul, li:link, NavItem:hover, ul:hover, Link:link, Link:visted{
   color: white;
   text-decoration: none !important;
   border: none;

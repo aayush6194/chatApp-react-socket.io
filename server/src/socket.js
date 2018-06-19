@@ -8,6 +8,8 @@ module.exports = (server)=>{
     socket.on("message", (data)=>{
       io.sockets.emit("message", data);
     });
-  })
+
+     socket.on('disconnect', ()=>{console.log(`disconnected ${socket.id}`);});
+  });
 
 };

@@ -14,17 +14,22 @@ class App extends Component {
   constructor(props){
     super(props);
     this.socket = openSocket('http://localhost:3001');
-    this.state = {poop : "SD", message:"", display: "poop"};
-  }
-
+    this.state = {poop : "SD",  message : "" ,messages: [{sender: "", to: "", content: ""}], display: ["poop"] };
+}
   componentDidMount(){
-    this.getRequest();
-  }
+  //  this.getRequest();
+    this.socket.on('message', (data)=>{
+      this.setState({display: [...this.state.display, data.message]});
+    });
+
+    this.button = document.getElementById("test");
+    window.addEventListener("keydown", (e)=>{ if(e.keyCode==  13){  this.handleSubmit()}});
+      }
 
   getRequest(){
     var data = {};
 
-    const API = "http://localhost:3001/api";
+    var API = "http://localhost:3001/api";
     var ourRequest =new XMLHttpRequest();
     ourRequest.open("GET", API);
 
@@ -38,8 +43,8 @@ class App extends Component {
   }
 
   postRequest (){
-    const API = "http://localhost:3001/api";
-      fetch(API, {
+    var API = "http://localhost:3001/api";
+    fetch(API, {
     	method: 'GET'
     }).then(function(response) {
     	alert(response);
@@ -48,31 +53,28 @@ class App extends Component {
     });
   }
 
-
   handleChange (e){
-      this.setState({field: e.target.value});
+      this.setState({message: e.target.value});
   }
 
-
   handleSubmit(){
-    var temp = this.state.display;
-    this.socket.emit('message', {
-      user: "poop",
-      message: this.state.message
-    });
-    this.socket.on('message', (data)=>{this.setState({display: `${temp} ${data.message}`})})
+    if( this.state.message != ""){
+      this.socket.emit('message', {
+        user: "poop",
+        message: this.state.message
+      });
+      this.setState({message: ""});
+    }
   }
 
   render() {
     return (
       <Router>
-
          <div className="container grid-container">
-          <Navbar />
-           <h1>{this.state.poop}</h1>
+          
            <Switch>
                <Route exact path="/" component={StartPage} />
-               <Route  path="/home"  render={()=> <Home  message={this.state.display} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>}/>
+               <Route  path="/home"  render={()=> <Home  text={this.state.message} data={this.state.display} change={this.handleChange.bind(this)} submit={this.handleSubmit.bind(this)}/>}/>
                <Route path="/profile" component={Profile} />
            </Switch>
          </div>
