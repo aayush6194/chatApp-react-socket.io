@@ -2,16 +2,20 @@ import React from 'react';
 import Navbar from './Navbar';
 import ChatWindow from './ChatWindow';
 
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount(){
+    this.props.load();
+  }
   render(){
     return (
       <div>
       <div className="nav-container">
-      <Navbar />
+      <Navbar user={this.props.user} logout={this.props.logout}/>
       </div>
       <div>
         <ChatWindow data={this.props.data} />

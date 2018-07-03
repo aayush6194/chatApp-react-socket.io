@@ -3,7 +3,7 @@ import Navbar from './Navbar';
 const Profile = () => {
   return (
     <div>
-<Navbar />
+<Navbar/>
     <div>
 
       <center>

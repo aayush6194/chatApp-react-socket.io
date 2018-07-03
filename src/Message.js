@@ -8,7 +8,7 @@ class Message extends React.Component {
   }
 
   messages(list){
-    return list.map((x)=>{ return (<div className="chat"><li key={x.toString()}>{x}</li></div>)});
+    return list.map((x)=>{ return (<div className={x.type +"chat "+ "chat"}><li className={x.type} key={x.toString()}><div className="message">{x.content}</div><div className="date">{x.date.substring(0, 10)}</div> </li></div>)});
   }
 
   render(){

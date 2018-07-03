@@ -1,13 +1,26 @@
 .grid-container {
   display: grid;
-
-
 }
 
-.nav-container{
-  margin-bottom: 60px;
+.false{
+  display: none;
 }
 
+.full{
+  display: block;
+  width: 80%;
+}
+.right{
+  float: right;
+}
+
+.date{
+  float: right;
+  font-size: 70%;
+}
+.name{
+  float:right;
+}
 .chat{
   height: 50px;
   padding: 5px 10px;
@@ -16,6 +29,7 @@
   border-radius: 20px;
   margin-bottom: 4px;
   color: white;
+  box-shadow:0 2px 4px 0 rgba(0,0,0,0.10);
 }
 .grid-bottom{
   position: absolute;
@@ -26,10 +40,20 @@
 }
 
 Link, li, NavItem{
-  color: black;
   color:inherit;
   text-decoration: none;
   list-style: none;
+}
+.sent{
+  color: white;
+}
+.recieved{
+    color: black;
+}
+
+.recievedchat{
+    color: black;
+    background: #F9F2F2;
 }
 
 Link:hover, li:hover, ul, li:link, NavItem:hover, ul:hover, Link:link, Link:visted{
